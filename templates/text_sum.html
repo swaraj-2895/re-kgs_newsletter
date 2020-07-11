@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<h2>Text Summarizer</h2>
+<body>  
+<div>
+<form method="POST" action="/pred">
+<button type="submit">Submit</button>    
+</div>
+<div>
+<h2>Following is the summary</h2>
+  {% for i in range((head_sum|length)) %}
+    <p> {{head_sum[i]}} </p>
+    <p> {{text_sum[i]}} </p>
+  {% endfor %}
+
+</div>
+</body>
+</html>
