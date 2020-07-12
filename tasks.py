@@ -1,18 +1,20 @@
 from flask import request
 from flask import jsonify
 from flask import Flask, render_template, url_for
-import re
 import transformers
 import requests
 from bs4 import BeautifulSoup
 from transformers import pipeline
 import time
 
-def headings(link):
-  htmlfile_source=requests.get(link).text
-  soup=BeautifulSoup(htmlfile_source,'lxml')
-  article_head=soup.find('h1', class_='display-heading-04').text.strip()
-  return (article_head)
+def headings(links):
+  head_sum=[]
+  for link in links:
+      htmlfile_source=requests.get(link).text
+      soup=BeautifulSoup(htmlfile_source,'lxml')
+      article_head=soup.find('h1', class_='display-heading-04').text.strip()
+      head_sum.append(article_head) 
+  return (head_sum)
   
 def get_links():
     links=[]
@@ -24,8 +26,7 @@ def get_links():
        links.append(source_link+article.a['href'])
     return links
     
-def predictions():
-    links=get_links()
+def predictions(links, head_sum):
     text_sum=[]
     head_sum=[]
     for link in links:
@@ -45,9 +46,6 @@ def predictions():
                 for i in text:
                     for key, value in i.items():
                         text_sum.append(value)
-
-                head=headings(link)
-                head_sum.append(head)
                 
           except:  
                 print("Connection refused by the server..")
