@@ -24,7 +24,7 @@ def pred():
     if request.method=='POST':
         links=get_links()
         heading=headings(links)
-        head_sum, text_sum = q.enqueue_call(func=predictions, args=links, heading)
+        head_sum, text_sum = q.enqueue_call(predictions, args=(links, heading))
  
     return render_template('text_sum.html', head_sum=head_sum, text_sum=text_sum)
 
