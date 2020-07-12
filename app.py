@@ -9,7 +9,7 @@ from transformers import pipeline
 import time
 from rq import Queue
 from worker import conn
-from tasks import predictions
+from tasks import predictions, get_links, headings
 
 q = Queue(connection=conn)
 
