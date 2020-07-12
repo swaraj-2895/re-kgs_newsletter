@@ -22,8 +22,8 @@ def index():
 @app.route('/pred', methods=['POST'])
 def pred():
     if request.method=='POST':
-        links=q.enqueue(get_links)
-        heading=q.enqueue(headings, links)
+        links=get_links
+        heading=headings(links)
         head_sum, text_sum = q.enqueue(predictions, links, headings)
  
     return render_template('text_sum.html', head_sum=head_sum, text_sum=text_sum)
