@@ -28,7 +28,7 @@ def pred():
         job = q.enqueue(predictions, args=(links, heading,), result_ttl=-1, job_timeout=3600)
         print(job.result)
  
-    return render_template('text_sum.html', head_sum=head_sum, text_sum=text_sum)
+    #return render_template('text_sum.html', head_sum=head_sum, text_sum=text_sum)
 
 if __name__=='__main__':
     app.run() #add threaded=True
