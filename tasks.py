@@ -7,15 +7,7 @@ from bs4 import BeautifulSoup
 from transformers import pipeline
 import time
 
-def headings(links):
-  head_sum=[]
-  for link in links:
-      htmlfile_source=requests.get(link).text
-      soup=BeautifulSoup(htmlfile_source,'lxml')
-      article_head=soup.find('h1', class_='display-heading-04').text.strip()
-      head_sum.append(article_head) 
-  return (head_sum)
-  
+
 def get_links():
     links=[]
     source_link='https://www.retaildive.com'
@@ -25,10 +17,22 @@ def get_links():
     for article in article_others:    
        links.append(source_link+article.a['href'])
     return links
+
+
+
+def headings(links):
+  head_sum=[]
+  for link in links:
+      htmlfile_source=requests.get(link).text
+      soup=BeautifulSoup(htmlfile_source,'lxml')
+      article_head=soup.find('h1', class_='display-heading-04').text.strip()
+      head_sum.append(article_head) 
+  return (head_sum)
+  
+
     
 def predictions(links, head_sum):
     text_sum=[]
-    head_sum=[]
     for link in links:
           try:  
                 htmlfile=requests.get(link).text
