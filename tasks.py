@@ -33,6 +33,7 @@ def headings(links):
     
 def predictions(links, head_sum):
     text_sum=[]
+    summarizer=pipeline("summarization")
     for link in links:
           try:  
                 htmlfile=requests.get(link).text
@@ -45,7 +46,6 @@ def predictions(links, head_sum):
                 final_article=[]
                 for art in articles[:10]:
                     articles_to_sum=articles_to_sum+" "+art.text
-                summarizer=pipeline("summarization")
                 text=summarizer(articles_to_sum, max_len=120, min_len=30)
                 for i in text:
                     for key, value in i.items():
@@ -55,7 +55,6 @@ def predictions(links, head_sum):
                 print("Connection refused by the server..")
                 print("Let me sleep for 5 seconds")
                 print("ZZzzzz...")
-                time.sleep(5)
                 print("Was a nice sleep, now let me continue...")
                 continue
     return (head_sum, text_sum)
