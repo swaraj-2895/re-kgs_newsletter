@@ -19,7 +19,7 @@ app=Flask(__name__)
 def index():
     links=get_links()
     heading=headings(links)
-    job = q.enqueue(predictions, args=(links, heading,), result_ttl=-1, job_timeout=3600)
+    job = q.enqueue(predictions, args=(links, heading,))
     return render_template('text_sum.html')
 
 @app.route('/pred', methods=['POST'])
