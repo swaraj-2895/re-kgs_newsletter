@@ -14,7 +14,7 @@ def get_links():
     htmlfile=requests.get(source_link).text
     soup=BeautifulSoup(htmlfile,'lxml')
     article_others=soup.find_all('div', class_='medium-8 columns')
-    for article in article_others:    
+    for article in article_others[:5]:    
        links.append(source_link+article.a['href'])
     return links
 
