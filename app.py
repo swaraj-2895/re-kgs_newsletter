@@ -11,15 +11,18 @@ from rq import Queue
 from worker import conn
 from tasks import predictions, get_links, headings
 
+
+
 q = Queue(connection=conn)
 
 app=Flask(__name__)
+links=get_links()
+heading=headings(links)
+job = q.enqueue(predictions, args=(links, heading,))
 
 @app.route('/')
 def index():
-    links=get_links()
-    heading=headings(links)
-    job = q.enqueue(predictions, args=(links, heading,))
+    
     return render_template('text_sum.html')
 
 @app.route('/pred', methods=['POST'])
