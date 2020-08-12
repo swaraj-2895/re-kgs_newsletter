@@ -69,4 +69,4 @@ def pred():
     return render_template('text_sum.html', head_sum=head_sum, text_sum=text_sum)
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True) #add threaded=True
+    app.run(host='0.0.0.0', port=80, debug=True) #add threaded=True
