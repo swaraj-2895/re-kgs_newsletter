@@ -6,7 +6,7 @@ Jinja2==2.11.1
 lxml==4.5.0
 pandas==1.0.1
 requests==2.22.0
-tensorflow-cpu==2.2.0
+tensorflow-cpu==2.5.3
 transformers==2.11.0
 beautifulsoup4==4.8.2
 rq==1.4.3
